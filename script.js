@@ -24,6 +24,6 @@
     }
     return result;
 }
-}
+
 
 module.exports = letterCombinations;
