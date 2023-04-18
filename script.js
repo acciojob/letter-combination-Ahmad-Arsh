@@ -1,37 +1,29 @@
-function letterCombinations(input_digit) {
+
   //Complete the function
-	 if (!input_digit) return [];
-
-  const digitToLetters = {
-    "2": "abc",
-    "3": "def",
-    "4": "ghi",
-    "5": "jkl",
-    "6": "mno",
-    "7": "pqrs",
-    "8": "tuv",
-    "9": "wxyz",
-  };
-
-  const result = [];
-
-  function backtrack(combination, nextDigits) {
-    if (nextDigits.length === 0) {
-      result.push(combination);
-    } else {
-      const currentDigit = nextDigits[0];
-      const letters = digitToLetters[currentDigit];
-
-      for (let i = 0; i < letters.length; i++) {
-        const letter = letters[i];
-        backtrack(combination + letter, nextDigits.slice(1));
-      }
+	function letterCombinations(digits) {
+    if (digits.length === 0) return [];
+    const phone = {
+        '2': ['a', 'b', 'c'],
+        '3': ['d', 'e', 'f'],
+        '4': ['g', 'h', 'i'],
+        '5': ['j', 'k', 'l'],
+        '6': ['m', 'n', 'o'],
+        '7': ['p', 'q', 'r', 's'],
+        '8': ['t', 'u', 'v'],
+        '9': ['w', 'x', 'y', 'z']
+    };
+    let result = [''];
+    for (let digit of digits) {
+        let temp = [];
+        for (let res of result) {
+            for (let char of phone[digit]) {
+                temp.push(res + char);
+            }
+        }
+        result = temp;
     }
-  }
-
-  backtrack("", digits);
-
-  return result.sort();
+    return result;
+}
 }
 
 module.exports = letterCombinations;
